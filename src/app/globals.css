@@ -1,26 +1,60 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Cores da marca, extraídas dos logos fornecidos:
+     navy #12294A/#1B3A5C, ouro #B8841E/#F2B84B, creme #FFF6E0.
+     Os valores abaixo são os do tema claro; o escuro sobrescreve em `.dark`. */
+  --color-fundo: #f8f6f1;
+  --color-cartao: #ffffff;
+  --color-tinta: #1b3a5c;
+  --color-tinta-forte: #12294a;
+
+  /* texto secundário: tom quente derivado do creme da marca */
+  --color-suave: #5f574b;
+
+  --color-linha: #e5ded2;
+
+  /* O ouro da marca (#B8841E) dá 3,06:1 sobre o fundo claro — reprova em
+     WCAG AA para texto. Usamos um tom mais escuro da mesma família em texto e
+     botões, reservando o dourado original para detalhes e ícones. */
+  --color-marca: #8a6216;
+  --color-marca-viva: #b8841e;
+  --color-marca-suave: #f7eedc;
+
+  --color-feito: #2f6b3e;
+  --color-feito-suave: #e8f1ea;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Tema escuro: navy da marca como base, com o creme do logo para o texto.
+   As utilidades do Tailwind referenciam estas variáveis, então trocar os
+   valores aqui troca a interface inteira sem tocar nos componentes. */
+.dark {
+  --color-fundo: #0d1622;
+  --color-cartao: #14202f;
+  --color-tinta: #e8e4dc;
+  --color-tinta-forte: #f5f2ec;
+  --color-suave: #a8a296;
+  --color-linha: #24344a;
+
+  --color-marca: #e2b45f;
+  --color-marca-viva: #f2b84b;
+  --color-marca-suave: #2c2313;
+
+  --color-feito: #6fc489;
+  --color-feito-suave: #16301f;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--color-fondo);
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-fundo);
+  color: var(--color-tinta);
+  font-family: var(--font-geist), system-ui, sans-serif;
 }
