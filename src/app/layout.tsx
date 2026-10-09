@@ -15,7 +15,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={`${geist.variable} h-full antialiased`}>
+    // suppressHydrationWarning: o ScriptTema acrescenta `dark` na raiz antes
+    // da hidratação para evitar o flash de tela branca. O servidor não pode
+    // saber a preferência do navegador, então essa classe diverge de propósito —
+    // é o caso previsto pela documentação do React, corrigido aqui em vez de
+    // aparecer como erro no console.
+    <html
+      lang="pt-BR"
+      className={`${geist.variable} h-full antialiased`}
+      suppressHydrationWarning
+    >
       <head>
         <ScriptTema />
       </head>
